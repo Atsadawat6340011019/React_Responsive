@@ -13,7 +13,7 @@ import TestSideBar from "./TestSideBar";
 function App() {
   return (
     <Routes>
-      <Route path="/dashboard" exact={true} element={<Dashboard />} />
+      <Route path="/" exact={true} element={<Dashboard />} />
       <Route path="/table" element={<Tablestatus />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/form" element={<Form />} />
