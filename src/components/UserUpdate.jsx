@@ -1,13 +1,14 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import { Typography, Grid, Button } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import MainLayouts from "./layouts/mainLayouts";
+import Swal from "sweetalert2";
 
 export default function UserUpdate() {
   const { id } = useParams();
@@ -31,8 +32,10 @@ export default function UserUpdate() {
       })
       .catch((error) => console.log("error", error));
   }, [id]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Form submitted!");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -52,11 +55,24 @@ export default function UserUpdate() {
       redirect: "follow",
     };
 
-    fetch("https://www.melivecode.com/api/users/update/" + id, requestOptions)
+    fetch("https://www.melivecode.com/api/users/update", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        alert(result["message"]);
+        
         if (result["status"] === "ok") {
+          Swal.fire({
+          title: "แก้ไขเรียบร้อย",
+          width: 600,
+          padding: "3em",
+          color: "#716add",
+          background: "#fff url(/images/trees.png)",
+          backdrop: `
+    rgba(0,0,123,0.4)
+    url("/images/nyan-cat.gif")
+    left top
+    no-repeat
+  `,
+        });
           window.location.href = "/table";
         }
       })
