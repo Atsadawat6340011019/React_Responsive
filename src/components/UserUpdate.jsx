@@ -58,23 +58,18 @@ export default function UserUpdate() {
     fetch("https://www.melivecode.com/api/users/update", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        
         if (result["status"] === "ok") {
           Swal.fire({
-          title: "แก้ไขเรียบร้อย",
-          width: 600,
-          padding: "3em",
-          color: "#716add",
-          background: "#fff url(/images/trees.png)",
-          backdrop: `
-    rgba(0,0,123,0.4)
-    url("/images/nyan-cat.gif")
-    left top
-    no-repeat
-  `,
-        });
-          window.location.href = "/table";
+            position: "center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
+        setTimeout(() => {
+          window.location.href = "/table";
+        }, 1500);
       })
       .catch((error) => console.log("error", error));
   };
