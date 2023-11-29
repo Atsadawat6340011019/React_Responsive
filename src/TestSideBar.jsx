@@ -44,7 +44,14 @@ export default function TestSideBar(props) {
       <List>
         {["Dashboard", "Table", "Profile"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton component={Link} to={`/${text.toLowerCase()}`}>
+            <ListItemButton
+              component={Link}
+              to={
+                text.toLowerCase() === "dashboard"
+                  ? "/"
+                  : `/${text.toLowerCase()}`
+              }
+            >
               <ListItemIcon>{customIcons[index]}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
